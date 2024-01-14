@@ -1,0 +1,39 @@
+
+
+# Monitoring: Monitor Docker stats with Grafana
+cadvisor:
+  container_name: cadvisor
+  ports:
+    - 8080:8080
+  volumes:
+    - /var/run:/var/run:ro
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+  image: gcr.io/cadvisor/cadvisor:v0.47.2
+
+prometheus:
+  container_name: prometheus
+  image: prom/prometheus:v2.48.1
+  ports:
+    - 9090:9090
+  volumes:
+    - ../plugins/monitoring/build/prometheus/:/etc/prometheus/
+  command:
+    - '--config.file=/etc/prometheus/prometheus.yml'
+  depends_on:
+    - cadvisor
+
+grafana:
+  container_name: grafana
+  image: grafana/grafana:10.2.3
+  ports:
+    - 3000:3000
+  environment:
+    - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+  volumes:
+    - ../../data/monitoring:/var/lib/grafana
+    - ../plugins/monitoring/build/grafana/provisioning/:/etc/grafana/provisioning/
+  depends_on:
+    - prometheus
+  restart: always
