@@ -36,4 +36,4 @@ grafana:
     - ../plugins/monitoring/build/grafana/provisioning/:/etc/grafana/provisioning/
   depends_on:
     - prometheus
-  restart: always
+  restart: on-failure
