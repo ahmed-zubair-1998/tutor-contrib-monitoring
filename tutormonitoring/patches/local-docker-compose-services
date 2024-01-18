@@ -18,7 +18,7 @@ prometheus:
   ports:
     - 9090:9090
   volumes:
-    - ../plugins/monitoring/build/prometheus/:/etc/prometheus/
+    - ../plugins/monitoring/local/prometheus/:/etc/prometheus/
   command:
     - '--config.file=/etc/prometheus/prometheus.yml'
   depends_on:
@@ -33,7 +33,7 @@ grafana:
     - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
   volumes:
     - ../../data/monitoring:/var/lib/grafana
-    - ../plugins/monitoring/build/grafana/provisioning/:/etc/grafana/provisioning/
+    - ../plugins/monitoring/local/grafana/provisioning/:/etc/grafana/provisioning/
   depends_on:
     - prometheus
   restart: on-failure

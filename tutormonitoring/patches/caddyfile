@@ -1,0 +1,8 @@
+# Monitoring
+prometheus.{{ LMS_HOST }}{$default_site_port} {
+    import proxy "prometheus:9090"
+}
+
+grafana.{{ LMS_HOST }}{$default_site_port} {
+    import proxy "grafana:3000"
+}

@@ -1,0 +1,4 @@
+patches:
+- path: plugins/monitoring/k8s/resources/add-annotation-patch.yml
+  target:
+    kind: Deployment

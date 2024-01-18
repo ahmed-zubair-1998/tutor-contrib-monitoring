@@ -1,0 +1,12 @@
+- name: prometheus-config
+  files:
+    - plugins/monitoring/k8s/prometheus/prometheus.yml
+
+- name: grafana-dashboards
+  files:
+    - plugins/monitoring/k8s/grafana/provisioning/dashboards/basic.json
+    - plugins/monitoring/k8s/grafana/provisioning/dashboards/dashboard.yml
+
+- name: grafana-datasources
+  files:
+    - plugins/monitoring/k8s/grafana/provisioning/datasources/datasource.yml

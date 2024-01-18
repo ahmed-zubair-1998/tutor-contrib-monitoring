@@ -14,7 +14,8 @@ hooks.Filters.ENV_TEMPLATE_ROOTS.add_items(
 
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
-        ("monitoring/build", "plugins"),
+        ("monitoring/k8s", "plugins"),
+        ("monitoring/local", "plugins"),
     ],
 )
 
